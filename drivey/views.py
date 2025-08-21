@@ -4,4 +4,4 @@ from django.http import HttpResponse
 
 # ログインページの表示
 def index(request):
-    return HttpResponse("Login Page")
+    return render(request, 'drivey/login.html')

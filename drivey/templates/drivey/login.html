@@ -3,8 +3,8 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>StudyHub - ログイン</title>
-    <link rel="stylesheet" href="{% static 'StudyHub/css/login.css' %}">
+    <title>Drivey - ログイン</title>
+    <link rel="stylesheet" href="{% static 'drivey/css/login.css' %}">
 </head>
 <body>
   <div class="login-wrap">
@@ -13,7 +13,7 @@
       <label for="tab-1" class="tab">Drivey</label>
       <div class="login-form">
         <div class="sign-in-htm">
-          <form method="post" action="{% url '' %}">
+          <form action="{% url 'index' %}" method="post">
             {% csrf_token %}
             <div class="group">
               <label for="user" class="label">名前を入力</label>
