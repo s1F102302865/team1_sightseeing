@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Drivey - ログイン</title>
+    <link rel="stylesheet" href="{% static 'drivey/css/login.css' %}">
+</head>
+<body>
+  <div class="login-wrap">
+    <div class="login-html">
+      <input id="tab-1" type="radio" name="tab" class="sign-in" checked>
+      <label for="tab-1" class="tab">Drivey</label>
+      <div class="login-form">
+        <div class="sign-in-htm">
+          <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <div class="group">
+              <label for="user" class="label">名前を入力</label>
+              <input id="user" type="text" name="username" class="input" placeholder="Enter username">
+            </div>
+            <div class="group">
+              <input type="submit" class="button" value="進む">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
