@@ -13,7 +13,7 @@
       <label for="tab-1" class="tab">Drivey</label>
       <div class="login-form">
         <div class="sign-in-htm">
-          <form action="{% url 'index' %}" method="post">
+          <form action="{% url 'login' %}" method="post">
             {% csrf_token %}
             <div class="group">
               <label for="user" class="label">名前を入力</label>
