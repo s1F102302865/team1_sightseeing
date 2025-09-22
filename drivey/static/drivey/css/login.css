@@ -1,155 +1,150 @@
-body {
-  margin: 0;
-  color: #6a6f8c;
-  background: #c8c8c8;
-  font: 600 16px/18px 'Open Sans', sans-serif;
-}
-*,
-:after,
-:before {
-  box-sizing: border-box;
-}
-.clearfix:after,
-.clearfix:before {
-  content: '';
-  display: table;
-}
-.clearfix:after {
-  clear: both;
-  display: block;
-}
-a {
-  color: inherit;
-  text-decoration: none;
+/* 基本設定 */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    /* Noto Sans JP を適用 */
+    font-family: 'Noto Sans JP', sans-serif;
+    background-color: #f8f9fa;
 }
 
-.login-wrap {
-  width: 100%;
-  margin: auto;
-  max-width: 480px;
-  min-height: 640px;
-  position: relative;
-  background: url(drivey\static\drivey\img\drivey_icon.png)
-    no-repeat center;
-  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+/* ヘッダー */
+.header {
+    display: flex;
+    align-items: center;
+    background-color: #8c233a;
+    color: white;
+    padding: 12px 20px;
 }
-.login-html {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  padding: 90px 70px 50px 70px;
-  background: rgba(40, 57, 101, 0.9);
+
+.header-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    height: 60px;
+    position: relative;
+    top: 15px;  
 }
-.login-html .sign-in-htm {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: absolute;
-  transform: rotateY(0);
-  backface-visibility: hidden;
-  transition: all 0.4s linear;
+
+/* ハンバーガーメニューのスタイル */
+.menu-icon {
+    width: 24px;
+    height: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 15px;
+    cursor: pointer;
 }
-.login-html .sign-in,
-.login-form .group .check {
-  display: none;
+
+.menu-icon span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 2px;
 }
-.login-html .tab,
-.login-form .group .label,
-.login-form .group .button 
-.login-html .tab {
-  font-size: 22px;
-  margin-right: 15px;
-  padding-bottom: 5px;
-  margin: 0 15px 10px 0;
-  display: inline-block;
-  border-bottom: 2px solid transparent;
+
+/* ログインフォーム全体のコンテナ */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
 }
-.login-html .sign-in:checked + .tab {
-  color: #fff;
-  border-color: #1161ee;
+
+/* ログインカード */
+.login-card {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px; /* 角を少し丸く */
+    /* 影をより柔らかく */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
 }
+
+/* カードの背景に車の画像を配置 */
+.login-card::before {
+    content: '';
+    position: absolute;
+    bottom: -15px; /* 位置を調整 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    height: 45%;
+    background-image: url('../images/car.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    /* 透明度をさらに下げる */
+    opacity: 0.1;
+    z-index: 1;
+}
+
+.login-card h2 {
+    margin-top: 0;
+    /* 下の余白を増やす */
+    margin-bottom: 40px;
+    color: #333;
+    font-size: 1.6rem; /* 文字を少し大きく */
+    font-weight: 700;
+}
+
+/* フォーム */
 .login-form {
-  min-height: 345px;
-  position: relative;
-  perspective: 1000px;
-  transform-style: preserve-3d;
-}
-.login-form .group {
-  margin-bottom: 15px;
-}
-.login-form .group .label,
-.login-form .group .input,
-.login-form .group .button {
-  width: 100%;
-  color: #fff;
-  display: block;
-}
-.login-form .group .input,
-.login-form .group .button {
-  border: none;
-  padding: 15px 20px;
-  border-radius: 25px;
-  background: rgba(255, 255, 255, 0.1);
-}
-.login-form .group input[data-type='password'] {
-  text-security: circle;
-  -webkit-text-security: circle;
-}
-.login-form .group .label {
-  color: #aaa;
-  font-size: 12px;
-}
-.login-form .group .button {
-  background: #1161ee;
-}
-.login-form .group label .icon {
-  width: 15px;
-  height: 15px;
-  border-radius: 2px;
-  position: relative;
-  display: inline-block;
-  background: rgba(255, 255, 255, 0.1);
-}
-.login-form .group label .icon:before,
-.login-form .group label .icon:after {
-  content: '';
-  width: 10px;
-  height: 2px;
-  background: #fff;
-  position: absolute;
-  transition: all 0.2s ease-in-out 0s;
-}
-.login-form .group label .icon:before {
-  left: 3px;
-  width: 5px;
-  bottom: 6px;
-  transform: scale(0) rotate(0);
-}
-.login-form .group label .icon:after {
-  top: 6px;
-  right: 0;
-  transform: scale(0) rotate(0);
-}
-.login-form .group .check:checked + label {
-  color: #fff;
-}
-.login-form .group .check:checked + label .icon {
-  background: #1161ee;
-}
-.login-form .group .check:checked + label .icon:before {
-  transform: scale(1) rotate(45deg);
-}
-.login-form .group .check:checked + label .icon:after {
-  transform: scale(1) rotate(-45deg);
+    position: relative;
+    z-index: 2;
 }
 
-.hr {
-  height: 2px;
-  margin: 60px 0 50px 0;
-  background: rgba(255, 255, 255, 0.2);
+.form-group {
+    margin-bottom: 25px; /* 間隔を少し広げる */
+    text-align: left;
 }
-.foot-lnk {
-  text-align: center;
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    /* 文字の太さを少し細く */
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px;
+    /* 枠線を少し薄く */
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* 入力欄を選択したときのスタイル */
+.form-input:focus {
+    outline: none;
+    border-color: #8c233a;
+    box-shadow: 0 0 0 3px rgba(140, 35, 58, 0.1);
+}
+
+.login-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #8c233a;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.login-button:hover {
+    background-color: #751d30;
 }
