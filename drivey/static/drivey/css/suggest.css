@@ -1,7 +1,7 @@
 /* --- Global Styles & Variables --- */
 :root {
     --primary-color: #6D4C41; /* メインの茶色 */
-    --background-color: #d1c5b5; /* 背景の薄いグレー */
+    --background-color: #440000; /* 背景の薄いグレー */
     --card-bg-color: #FFFFFF; /* カードの白 */
     --text-color-dark: #3E2723; /* 濃い文字色 */
     --text-color-light: #795548; /* 薄い文字色 */
@@ -30,7 +30,7 @@ body {
 .container {
     width: 100%;
     max-width: 720px; /* 変更 */
-    background-color: #FAEBD7;
+    background-color: #440000;
     padding: 2.5rem; /* 変更 */
     border-radius: 20px; /* 変更 */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
