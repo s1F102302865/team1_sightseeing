@@ -1,7 +1,8 @@
 /* --- Global Styles & Variables --- */
 :root {
     --primary-color: #6D4C41; /* メインの茶色 */
-    --background-color: #440000; /* 背景の薄いグレー */
+    /* フォーム外の背景 */
+    --background-color: #d9e5ff; /* 背景の薄いグレー */
     --card-bg-color: #FFFFFF; /* カードの白 */
     --text-color-dark: #3E2723; /* 濃い文字色 */
     --text-color-light: #795548; /* 薄い文字色 */
@@ -30,7 +31,8 @@ body {
 .container {
     width: 100%;
     max-width: 720px; /* 変更 */
-    background-color: #440000;
+    /* フォームの背景 */
+    background-color: #bad3ff;
     padding: 2.5rem; /* 変更 */
     border-radius: 20px; /* 変更 */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -54,14 +56,14 @@ header nav ul {
 
 header nav a {
     text-decoration: none;
-    color: var(--text-color-light);
+    color: #440000;
     font-size: 1rem; /* 変更 */
     font-weight: 700;
 }
 
 header h1 {
     text-align: center;
-    color: var(--primary-color);
+    color: #440000;
     font-size: 2.5rem; /* 変更 */
 }
 
