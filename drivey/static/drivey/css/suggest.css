@@ -1,0 +1,178 @@
+/* --- Global Styles & Variables --- */
+:root {
+    --primary-color: #6D4C41; /* メインの茶色 */
+    /* フォーム外の背景 */
+    --background-color: #d9e5ff; /* 背景の薄いグレー */
+    --card-bg-color: #FFFFFF; /* カードの白 */
+    --text-color-dark: #3E2723; /* 濃い文字色 */
+    --text-color-light: #795548; /* 薄い文字色 */
+    --border-color: #D7CCC8; /* 枠線の色 */
+    --font-family: 'Noto Sans JP', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color-dark);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 3rem; /* 変更 */
+}
+
+/* --- Main Container --- */
+.container {
+    width: 100%;
+    max-width: 720px; /* 変更 */
+    /* フォームの背景 */
+    background-color: #bad3ff;
+    padding: 2.5rem; /* 変更 */
+    border-radius: 20px; /* 変更 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Header --- */
+header {
+    margin-bottom: 2.5rem; /* 変更 */
+}
+
+header nav {
+    text-align: right;
+    margin-bottom: 1.5rem; /* 変更 */
+}
+
+header nav ul {
+    list-style: none;
+    display: inline-flex;
+    gap: 2rem; /* 変更 */
+}
+
+header nav a {
+    text-decoration: none;
+    color: #440000;
+    font-size: 1rem; /* 変更 */
+    font-weight: 700;
+}
+
+header h1 {
+    text-align: center;
+    color: #440000;
+    font-size: 2.5rem; /* 変更 */
+}
+
+/* --- Card Styles --- */
+.card {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 16px; /* 変更 */
+    padding: 2rem; /* 変更 */
+    margin-bottom: 2rem; /* 変更 */
+}
+
+.card h2 {
+    font-size: 1.1rem; /* 変更 */
+    color: var(--text-color-light);
+    margin-bottom: 1.5rem; /* 変更 */
+    font-weight: 700;
+}
+
+/* --- Search Conditions Card --- */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; /* 変更 */
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem; /* 変更 */
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 0.9rem; /* 変更 */
+    border: 1px solid var(--border-color);
+    border-radius: 10px; /* 変更 */
+    background-color: #fff;
+    font-size: 1rem; /* 変更 */
+    color: var(--text-color-dark);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236D4C41' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center; /* 変更 */
+    background-size: 1em;
+    cursor: pointer;
+}
+
+/* --- Suggestion Card --- */
+.suggestion h3 {
+    font-size: 1.8rem; /* 変更 */
+    margin-bottom: 0.75rem; /* 変更 */
+}
+
+.suggestion p {
+    color: var(--text-color-light);
+    font-size: 1rem; /* 変更 */
+    margin-bottom: 2rem; /* 変更 */
+}
+
+.button-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem; /* 変更 */
+}
+
+.btn {
+    padding: 1rem 1.2rem; /* 変更 */
+    border-radius: 10px; /* 変更 */
+    font-size: 1.1rem; /* 変更 */
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #5D4037;
+}
+
+.btn-secondary {
+    background-color: var(--card-bg-color);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: #FBE9E7;
+}
+
+
+/* --- Responsive Design for smaller screens --- */
+@media (max-width: 768px) { /* 変更 */
+    body {
+        padding: 1rem;
+    }
+    .container {
+        padding: 1.5rem;
+    }
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    header h1 {
+        font-size: 1.8rem;
+    }
+}
