@@ -8,12 +8,26 @@ body, html {
 
 /* 画面全体の背景設定 */
 body {
-    background-image: url('../img/team-icon-removebg-preview.png');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    position: relative; /* ::beforeを配置するために必要 */
+    overflow: hidden;   /* ::beforeがはみ出さないように */
 }
+
+/* 透過した背景画像を設定するための擬似要素 */
+body::before {
+    content: '';
+    position: fixed; /* 背景を固定 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/team-icon-removebg-preview.png');
+    background-size: 100%;
+    background-position: center 2800%;
+    background-repeat: no-repeat;
+    opacity: 0.3; /* ここで画像の透過度を調整 (0.0から1.0の間) */
+    z-index: -1;  /* 他のコンテンツの背面に配置 */
+}
+
 
 /* ヘッダー */
 .header {
@@ -23,6 +37,8 @@ body {
     color: #440000;
     padding: 12px 20px;
 }
+
+/* (以下、他のCSSは変更なし) */
 
 .header-title {
     font-size: 1.2rem;
@@ -63,8 +79,8 @@ body {
 /* ログインカード */
 .login-card {
     border-radius: 12px;
-    width: 100%;
-    max-width: 400px;
+    width: 100%; /* ← 100%に修正 */
+    max-width: 500px; /* ← 好みの幅に値を変更 (例: 500px) */
     text-align: center;
     position: relative;
     overflow: hidden;
