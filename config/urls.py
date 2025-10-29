@@ -21,4 +21,5 @@ from drivey import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('drivey/', include('drivey.urls')),
+    path('accounts/', include('accounts.urls')),
 ]

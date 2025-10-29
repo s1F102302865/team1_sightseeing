@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ホームページ</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <h2>ようこそ、 {{ user.username }} さん！</h2>
+        
+        <!-- ログアウト (accounts:logout_view) へのリンク -->
+        <a href="{% url 'logout' %}">ログアウト</a>
+    {% else %}
+        <!-- (通常 @login_required によりここには来ない) -->
+        <p>ログインしていません。</p>
+        <a href="{% url 'login' %}">ログインページへ</a>
+    {% endif %}
+</body>
+</html>
