@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nagano Route with Waypoints</title>
+    <script>
+      function initMap() {
+        const directionsRenderer = new google.maps.DirectionsRenderer();
+        const directionsService = new google.maps.DirectionsService();
+
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 9,
+          center: { lat: 36.65, lng: 138.18 },  // 長野県中心付近
+          disableDefaultUI: true,
+        });
+
+        directionsRenderer.setMap(map);
+        directionsRenderer.setPanel(document.getElementById("sidebar"));
+
+        const control = document.getElementById("floating-panel");
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
+
+        const onChangeHandler = () =>
+          calculateAndDisplayRoute(directionsService, directionsRenderer);
+
+        document.getElementById("start").addEventListener("change", onChangeHandler);
+        document.getElementById("end").addEventListener("change", onChangeHandler);
+        document.getElementById("mode").addEventListener("change", onChangeHandler);
+        document.getElementById("waypoints").addEventListener("change", onChangeHandler);
+      }
+
+      function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+        const start = document.getElementById("start").value;
+        const end = document.getElementById("end").value;
+        const selectedMode = document.getElementById("mode").value;
+
+        const waypointSelect = document.getElementById("waypoints");
+        const waypoints = [];
+
+        for (let i = 0; i < waypointSelect.options.length; i++) {
+          if (waypointSelect.options[i].selected) {
+            waypoints.push({
+              location: waypointSelect.options[i].value,
+              stopover: true,
+            });
+          }
+        }
+
+        directionsService
+          .route({
+            origin: start,
+            destination: end,
+            travelMode: google.maps.TravelMode[selectedMode],
+            waypoints: waypoints,
+            optimizeWaypoints: true,
+          })
+          .then((response) => directionsRenderer.setDirections(response))
+          .catch((e) => alert("Directions request failed: " + e.message));
+      }
+
+      window.initMap = initMap;
+    </script>
+
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #container {
+        height: 100%;
+        display: flex;
+      }
+      #map {
+        flex-grow: 4;
+      }
+      #sidebar {
+        flex-basis: 15rem;
+        max-width: 30rem;
+        overflow: auto;
+        padding: 1rem;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background: white;
+        padding: 10px;
+        border: 1px solid #999;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="floating-panel">
+      <strong>Start (長野県内):</strong>
+      <select id="start">
+        <option value="Nagano Station">長野駅</option>
+        <option value="Matsumoto Station">松本駅</option>
+        <option value="Ueda Station">上田駅</option>
+        <option value="Karuizawa Station">軽井沢駅</option>
+        <option value="Suwa Lake">諏訪湖</option>
+        <option value="Ina Station">伊那市駅</option>
+        <option value="Iida Station">飯田駅</option>
+      </select>
+      <br />
+
+      <strong>Waypoints (中継地点・複数可):</strong><br />
+      <select id="waypoints" multiple size="6">
+        <option value="Zenkoji Temple">善光寺</option>
+        <option value="Matsumoto Castle">松本城</option>
+        <option value="Hakuba Happo">白馬八方尾根</option>
+        <option value="Togakushi Shrine">戸隠神社</option>
+        <option value="Utsukushigahara">美ヶ原高原</option>
+        <option value="Kirikamimine Highlands">霧ヶ峰</option>
+      </select>
+      <br />
+
+      <strong>End (長野県内):</strong>
+      <select id="end">
+        <option value="Nagano Station">長野駅</option>
+        <option value="Matsumoto Station">松本駅</option>
+        <option value="Ueda Station">上田駅</option>
+        <option value="Karuizawa Station">軽井沢駅</option>
+        <option value="Suwa Lake">諏訪湖</option>
+        <option value="Ina Station">伊那市駅</option>
+        <option value="Iida Station">飯田駅</option>
+      </select>
+      <br />
+
+      <b>Mode of Travel:</b>
+      <select id="mode">
+        <option value="DRIVING">Driving</option>
+        <option value="WALKING">Walking</option>
+        <option value="BICYCLING">Bicycling</option>
+      </select>
+    </div>
+
+    <div id="container">
+      <div id="map"></div>
+      <div id="sidebar"></div>
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYeg8MAETUi6wBD8W2XTUSgxcLW4HKNJ4&callback=initMap" defer></script>
+  </body>
+</html>
