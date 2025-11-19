@@ -7,12 +7,6 @@
 </head>
 <body>
     <h2>ログイン</h2>
-    
-    <!-- 
-      form の action は指定しない (自分自身のURLにPOSTする) か、
-      {% url 'login' %} (accounts:login_view) を指定します。
-      ここでは省略し、自分自身 (accounts/login/) にPOSTします。
-    -->
     <form method="POST">
         {% csrf_token %} <!-- CSRF対策 -->
         
