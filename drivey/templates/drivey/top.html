@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>長野県マップ（カテゴリ別マーカー）</title>
+    <link rel="stylesheet" href="{% static 'drivey/css/top3.css' %}">
+</head>
+<body>
+  <h1>長野県マップ</h1>
+
+  <div id="category-buttons">
+    <button data-category="onsen">温泉</button>
+    <button data-category="shrine">寺社</button>
+    <button data-category="waterfall">滝</button>
+    <button data-category="souvenir">道の駅</button>
+  </div>
+
+  <div id="map-container">
+    <img src="{% static 'drivey/img/map.png' %}" alt="長野県地図" id="map">
+  </div>
+
+  <div id="selection-area">
+    <h3>選択中のスポット</h3>
+    <div id="checkbox-container"></div>
+  </div>
+
+  <div id="recommendation">
+    <p>おすすめのスポットは<a href= "spot.html" >こちら</a></p>
+  </div>
+
+  <div id="detection-button">
+    <button>決定</button>
+  </div>
+
+  <script src="{% static 'drivey/js/top.js' %}"></script>
+</body>
+</html>

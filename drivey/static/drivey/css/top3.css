@@ -1,0 +1,157 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+  background: #f6f6f6;
+}
+
+#category-buttons {
+  margin: 10px;
+}
+
+#category-buttons button {
+  margin: 5px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #ccc;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* ホバー時に少し濃く */
+#category-buttons button:hover {
+  background: #bbb;
+}
+
+#category-buttons button.active {
+  background: #0078d7;
+  color: white;
+}
+
+#map-container {
+  position: relative;
+  display: inline-block;
+}
+
+#map {
+  width: 500px;
+  height: auto;
+  border: 2px solid #333;
+}
+
+.marker {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s ease;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: brightness(1);
+}
+
+/* ▼ 各カテゴリ画像設定 */
+.marker.onsen {
+  background-image: url("../img/onsen1.png");
+}
+.marker.shrine {
+  background-image: url("../img/shrine.png");
+}
+.marker.waterfall {
+  background-image: url("../img/taki.png");
+}
+.marker.souvenir {
+  background-image: url("../img/station.png");
+}
+
+/* ▼ ホバー時に少し明るく・拡大 */
+.marker:hover {
+  filter: brightness(1.2);
+  transform: translate(-50%, -50%) scale(1.2);
+  z-index: 10;
+}
+
+/* ▼ 選択時にカテゴリごとの色を重ねる（半透明） */
+.marker.active::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  opacity: 0.4;
+}
+
+/* カテゴリ別色（オーバーレイ） */
+.marker.onsen.active::after {
+  background-color: red;
+}
+.marker.shrine.active::after {
+  background-color: yellow;
+}
+.marker.waterfall.active::after {
+  background-color: blue;
+}
+.marker.souvenir.active::after {
+  background-color: green;
+}
+
+/* ▼ 選択時は少し拡大・強調 */
+.marker.active {
+  transform: translate(-50%, -50%) scale(1.25);
+  filter: brightness(1.3);
+  z-index: 15;
+}
+
+
+#selection-area {
+  margin-top: 20px;
+}
+
+#checkbox-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+#checkbox-container label {
+  background: white;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  padding: 4px 10px;
+  width: 200px;
+  text-align: left;
+}
+
+.tooltip {
+  position: absolute;
+  background: white;
+  color: black;
+  border: 1px solid #aaa;
+  padding: 4px 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  pointer-events: auto;
+  z-index: 1000;
+  border-radius: 4px;
+  display: none;
+  height: 40px;
+  line-height: 20px;
+  transform: translateY(7px);
+}
+
+#detection-button{
+  margin: 10px;
+}
+
+.detection-button{
+  margin: 5px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #ccc;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
