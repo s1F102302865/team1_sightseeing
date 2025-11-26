@@ -7,12 +7,8 @@
 </head>
 <body>
     {% if user.is_authenticated %}
-        <h2>ようこそ、 {{ user.username }} さん！</h2>
-        
-        <!-- ログアウト (accounts:logout_view) へのリンク -->
         <a href="{% url 'logout' %}">ログアウト</a>
     {% else %}
-        <!-- (通常 @login_required によりここには来ない) -->
         <p>ログインしていません。</p>
         <a href="{% url 'login' %}">ログインページへ</a>
     {% endif %}
