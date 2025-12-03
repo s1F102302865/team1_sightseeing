@@ -40,8 +40,8 @@ body {
 
 .logo {
     /* DRIVEY テキストのスタイル */
-    font-family: Arial, sans-serif;
-    font-size: 7em; 
+    font-family: 'Bangers', cursive;
+    font-size: 15em; 
     font-weight: 900;
     color: white; 
     text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5); 
@@ -65,7 +65,7 @@ form {
     /* この値を調整して左へのずれ具合を変更してください */
     margin-right: auto;
     margin-top: 10%; 
-    margin-left: -80%; 
+    margin-left: -70%; 
     
     /* フォーム内の要素を左揃えにする */
     align-items: flex-end;

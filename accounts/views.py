@@ -10,8 +10,8 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            # 認証成功時、'drivey' アプリの 'home' (home_view) へリダイレクト
-            return redirect('home') 
+            # 認証成功時、'drivey' アプリの 'top' (top_view) へリダイレクト
+            return redirect('top') 
         else:
             # 認証失敗時
             # テンプレートは 'drivey' アプリのものを指定
