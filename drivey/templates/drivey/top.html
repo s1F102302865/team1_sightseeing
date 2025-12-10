@@ -2,37 +2,69 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>長野県マップ（カテゴリ別マーカー）</title>
-    <link rel="stylesheet" href="{% static 'drivey/css/top3.css' %}">
+  <link rel="stylesheet" href="{% static 'drivey/css/top4.css' %}" />
 </head>
-<body>
-  <h1>長野県マップ</h1>
 
-  <div id="category-buttons">
-    <button data-category="onsen">温泉</button>
-    <button data-category="shrine">寺社</button>
-    <button data-category="waterfall">滝</button>
-    <button data-category="souvenir">道の駅</button>
+<body class="base--reset">
+  <header class="header">
+  <div class="header-left">
+    <img src="{% static 'drivey/img/Drivey_icon.png' %}" class="app-icon" alt="Driveyアイコン" />
+    <span class="app-name">Drivey</span>
   </div>
 
-  <div id="map-container">
-    <img src="{% static 'drivey/img/map.png' %}" alt="長野県地図" id="map">
+  <nav class="header-nav">
+    <ul>
+      <li><a href="/drivey/top/">TOP画面に戻る</a></li>
+      <li><a href="/drivey/intoroduction/">アプリ説明</a></li>
+      <li><a href="/drivey/recommendation/">おすすめのルート</a></li>
+      <li><a href="/drivey/reference/">参考文献</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <!-- ▼ スライドショー -->
+  <div class="slideshow">
+    <img src="{% static 'drivey/img/hana.jpg' %}" class="slide active">
+    <img src="{% static 'drivey/img/kawa.jpg' %}" class="slide">
+    <img src="{% static 'drivey/img/kirei.jpg' %}" class="slide">
+    <img src="{% static 'drivey/img/yama.jpg' %}" class="slide">
   </div>
 
-  <div id="selection-area">
-    <h3>選択中のスポット</h3>
-    <div id="checkbox-container"></div>
-  </div>
+  <div class="bg-fixed"></div>
 
-  <div id="recommendation">
-    <p>おすすめのスポットは<a href= "spot.html" >こちら</a></p>
-  </div>
+  <!-- ▼ 全体コンテナ -->
+  <div class="container">
+    <main class="main-scroll">
+      <h1>長野県マップ</h1>
 
-  <div id="detection-button">
-    <button>決定</button>
+      <div id="category-buttons">
+        <button data-category="onsen">温泉</button>
+        <button data-category="shrine">寺社</button>
+        <button data-category="waterfall">滝</button>
+        <button data-category="souvenir">道の駅</button>
+      </div>
+
+      <div id="map-container">
+        <img id="map-img" src="{% static 'drivey/img/map.png' %}" alt="長野県地図" />
+      </div>
+
+      <div id="selection-area">
+        <h3>選択中のスポット</h3>
+        <div id="checkbox-container"></div>
+      </div>
+
+      <div id="recommendation">
+        <p>おすすめのスポットは<a id="link" href="spot.html">こちら</a></p>
+      </div>
+
+      <a href="" class="btn btn-gradient"><span>決定</span></a>
+    </main>
   </div>
 
   <script src="{% static 'drivey/js/top.js' %}"></script>
+  <script src="{% static 'drivey/js/header_slideshow.js' %}"></script>
 </body>
 </html>

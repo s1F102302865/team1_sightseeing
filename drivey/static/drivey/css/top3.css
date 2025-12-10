@@ -1,7 +1,8 @@
 body {
   font-family: sans-serif;
   text-align: center;
-  background: #f6f6f6;
+  background: #84745B;
+  background-image: url("../img/image.png");
 }
 
 #category-buttons {

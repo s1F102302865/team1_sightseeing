@@ -1,53 +1,50 @@
 const markersData = { 
   onsen: [
-    { name: "星野温泉トンボの湯", url: "https://www.hoshino-area.jp/tombo-no-yu/", x: 375, y: 300 },
-    { name: "ひまわりの湯", url: "https://hiraya-himawarinoyu.com/", x: 140, y: 600 },
-    { name: "白骨温泉公共野天風呂", url: "https://shirahone-onsen.org/", x: 140, y: 350 },
-    { name: "湯の華銭湯瑞祥", url: "https://zuisho.com/", x: 200, y: 320 },
-    { name: "地蔵温泉十福の湯", url: "https://zippuku.net/", x: 300, y: 250 },
-    { name: "早太郎温泉", url: "https://hayataro.org/", x: 210, y: 490 },
-    { name: "南相木温泉滝見の湯", url: "https://takiminoyu.com/", x: 370, y: 390 },
-
+    { name: "星野温泉トンボの湯", url: "https://www.hoshino-area.jp/tombo-no-yu/", x: 0.75, y: 0.429 },
+    { name: "ひまわりの湯", url: "https://hiraya-himawarinoyu.com/", x: 0.28, y: 0.857 },
+    { name: "白骨温泉公共野天風呂", url: "https://shirahone-onsen.org/", x: 0.28, y: 0.5 },
+    { name: "湯の華銭湯瑞祥", url: "https://zuisho.com/", x: 0.4, y: 0.457 },
+    { name: "地蔵温泉十福の湯", url: "https://zippuku.net/", x: 0.6, y: 0.357 },
+    { name: "早太郎温泉", url: "https://hayataro.org/", x: 0.42, y: 0.7 },
+    { name: "南相木温泉滝見の湯", url: "https://takiminoyu.com/", x: 0.74, y: 0.557 },
   ],
 
   shrine: [
-    { name: "光前寺", url: "http://www.kozenji.or.jp/", x: 230, y: 480 },
-    { name: "鳩ヶ嶺八幡宮", url: "https://hatogamine.org/", x: 190, y: 560 },
-    { name: "諏訪大社", url: "https://suwataisha.or.jp/", x: 230, y: 400 },
-    { name: "戸隠神社", url: "https://www.togakushi-jinja.jp/", x: 260, y: 170 },
-    { name: "熊野皇大神社", url: "https://kumanokoutai.com/", x: 400, y: 275 },
-    { name: "眞田神社", url: "http://sanada-jinja.com/", x: 300, y: 310 },
-    { name: "真田山長谷寺", url: "http://www.chouk.or.jp/", x: 330, y: 275 },
-    { name: "穂高神社", url: "https://www.hotakajinja.com/", x: 200, y: 330 },
-    { name: "清龍山長円寺", url: "https://chouenji.info/", x: 265, y: 430 },
-
-
+    { name: "光前寺", url: "http://www.kozenji.or.jp/", x: 0.46, y: 0.686 },
+    { name: "鳩ヶ嶺八幡宮", url: "https://hatogamine.org/", x: 0.38, y: 0.8 },
+    { name: "諏訪大社", url: "https://suwataisha.or.jp/", x: 0.46, y: 0.571 },
+    { name: "戸隠神社", url: "https://www.togakushi-jinja.jp/", x: 0.52, y: 0.243 },
+    { name: "熊野皇大神社", url: "https://kumanokoutai.com/", x: 0.8, y: 0.393 },
+    { name: "眞田神社", url: "http://sanada-jinja.com/", x: 0.6, y: 0.443 },
+    { name: "真田山長谷寺", url: "http://www.chouk.or.jp/", x: 0.66, y: 0.393 },
+    { name: "穂高神社", url: "https://www.hotakajinja.com/", x: 0.4, y: 0.471 },
+    { name: "清龍山長円寺", url: "https://chouenji.info/", x: 0.53, y: 0.614 },
   ],
+
   waterfall: [
-    { name: "蓼科大滝", url: "https://tateshina.ne.jp/spot/guide_12.html", x: 300, y: 380 },
-    { name: "白糸の滝", url: "https://karuizawa-kankokyokai.jp/spot/23206/", x: 395, y: 280 },
-    { name: "雷滝", url: "https://shinshu-takayama-onsenkyo.com/facility/kaminaridaki/", x: 355, y: 190 },
-    { name: "善五郎の滝", url: "https://db.go-nagano.net/topics_detail6/id=18460", x: 140, y: 350 },
-    { name: "田立の滝", url: "https://db.go-nagano.net/topics_detail6/id=5627", x: 120, y: 510 },
-    { name: "姿見不動滝", url: "https://db.go-nagano.net/topics_detail6/id=5025", x: 155, y: 580 },
-    { name: "男滝女滝", url: "https://db.go-nagano.net/topics_detail6/id=5618", x: 130, y: 540 },
-    { name: "御三甕の滝", url: "https://db.go-nagano.net/topics_detail6/id=3893", x: 375, y: 390 },
-    { name: "不動滝", url: "https://db.go-nagano.net/topics_detail6/id=4294", x: 290, y: 320 },
-
+    { name: "蓼科大滝", url: "https://tateshina.ne.jp/spot/guide_12.html", x: 0.6, y: 0.543 },
+    { name: "白糸の滝", url: "https://karuizawa-kankokyokai.jp/spot/23206/", x: 0.79, y: 0.4 },
+    { name: "雷滝", url: "https://shinshu-takayama-onsenkyo.com/facility/kaminaridaki/", x: 0.71, y: 0.271 },
+    { name: "善五郎の滝", url: "https://db.go-nagano.net/topics_detail6/id=18460", x: 0.28, y: 0.5 },
+    { name: "田立の滝", url: "https://db.go-nagano.net/topics_detail6/id=5627", x: 0.24, y: 0.729 },
+    { name: "姿見不動滝", url: "https://db.go-nagano.net/topics_detail6/id=5025", x: 0.31, y: 0.829 },
+    { name: "男滝女滝", url: "https://db.go-nagano.net/topics_detail6/id=5618", x: 0.26, y: 0.771 },
+    { name: "御三甕の滝", url: "https://db.go-nagano.net/topics_detail6/id=3893", x: 0.75, y: 0.557 },
+    { name: "不動滝", url: "https://db.go-nagano.net/topics_detail6/id=4294", x: 0.58, y: 0.457 },
   ],
-  souvenir: [
-    { name: "道の駅いくさかの郷", url: "https://www.village.ikusaka.nagano.jp/ikusakanosato/", x: 215, y: 270 },
-    { name: "道の駅あおき", url: "https://db.go-nagano.net/topics_detail6/id=12083", x: 270, y: 285 },
-    { name: "上田道と川の駅おとぎの里", url: "https://www.otoginosato.jp/", x: 295, y: 270 },
-    { name: "道の駅雷電くるみの里", url: "https://raidenkurumi.jp/", x: 340, y: 290 },
-    { name: "道の駅アルプス安曇野ほりがねの里", url: "https://horigane.co.jp/", x: 200, y: 320 },
-    { name: "道の駅小坂田公園", url: "https://osakada-park.jp/", x: 220, y: 380 },
-    { name: "道の駅八千穂高原", url: "https://yachi-michi.com/", x: 350, y: 350 },
-    { name: "道の駅ビーナスライン翆科湖", url: "https://tateshina.ne.jp/shopping/venus_line.html", x: 300, y: 390 },
-    { name: "道の駅大芝高原", url: "https://oshiba.jp/", x: 210, y: 440 },
-    { name: "道の駅南アルプスむら長谷", url: "https://www.inacity.jp/shisetsu/kankoshisetsu/minamialpsmura.html", x: 255, y: 465 },
-    { name: "道の駅田切の里", url: "https://www.tagirinosato.jp/", x: 210, y: 510 },
 
+  souvenir: [
+    { name: "道の駅いくさかの郷", url: "https://www.village.ikusaka.nagano.jp/ikusakanosato/", x: 0.43, y: 0.386 },
+    { name: "道の駅あおき", url: "https://db.go-nagano.net/topics_detail6/id=12083", x: 0.54, y: 0.407 },
+    { name: "上田道と川の駅おとぎの里", url: "https://www.otoginosato.jp/", x: 0.59, y: 0.386 },
+    { name: "道の駅雷電くるみの里", url: "https://raidenkurumi.jp/", x: 0.68, y: 0.414 },
+    { name: "道の駅アルプス安曇野ほりがねの里", url: "https://horigane.co.jp/", x: 0.4, y: 0.457 },
+    { name: "道の駅小坂田公園", url: "https://osakada-park.jp/", x: 0.44, y: 0.543 },
+    { name: "道の駅八千穂高原", url: "https://yachi-michi.com/", x: 0.7, y: 0.5 },
+    { name: "道の駅ビーナスライン翆科湖", url: "https://tateshina.ne.jp/shopping/venus_line.html", x: 0.6, y: 0.557 },
+    { name: "道の駅大芝高原", url: "https://oshiba.jp/", x: 0.42, y: 0.629 },
+    { name: "道の駅南アルプスむら長谷", url: "https://www.inacity.jp/shisetsu/kankoshisetsu/minamialpsmura.html", x: 0.51, y: 0.664 },
+    { name: "道の駅田切の里", url: "https://www.tagirinosato.jp/", x: 0.42, y: 0.729 },
   ],
 };
 
@@ -89,23 +86,31 @@ tooltip.addEventListener("mouseenter", () => {
 
 tooltip.addEventListener("mouseleave", () => {
   tooltipVisible = false;
-  hideTimeout = setTimeout(() => { tooltip.style.display = "none"; }, 200);
+  hideTimeout = setTimeout(() => {
+    tooltip.style.display = "none";
+  }, 600);
 });
 
-// マーカー追加
+// マーカー追加関数
 function addMarkers(category) {
+  const mapRect = mapContainer.getBoundingClientRect();
+
   markersData[category].forEach((spot) => {
     const marker = document.createElement("div");
     marker.className = `marker ${category}`;
     marker.dataset.name = spot.name;
     marker.dataset.url = spot.url;
-    marker.style.left = spot.x + "px";
-    marker.style.top = spot.y + "px";
     marker.dataset.category = category;
 
-    // クリックで選択
+    const leftPx = spot.x * mapRect.width;
+    const topPx = spot.y * mapRect.height;
+
+    marker.style.left = leftPx + "px";
+    marker.style.top = topPx + "px";
+
+    // クリックで選択トグル
     marker.addEventListener("click", () => {
-      marker.classList.toggle("active"); // 今回はクリックで濃淡切替（任意）
+      marker.classList.toggle("active");
       toggleSelection(spot);
     });
 
@@ -129,7 +134,9 @@ function addMarkers(category) {
     });
 
     marker.addEventListener("mouseleave", () => {
-      hideTimeout = setTimeout(() => { if (!tooltipVisible) tooltip.style.display = "none"; }, 200);
+      hideTimeout = setTimeout(() => {
+        if (!tooltipVisible) tooltip.style.display = "none";
+      }, 600);
       tooltipVisible = false;
     });
 
@@ -170,7 +177,6 @@ function updateCheckboxes() {
         if (marker) {
           marker.classList.remove("active");
         }
-
         updateCheckboxes();
       }
     });
@@ -180,3 +186,34 @@ function updateCheckboxes() {
     checkboxContainer.appendChild(label);
   });
 }
+
+// ウィンドウリサイズ時にマーカーの位置を再計算
+window.addEventListener("resize", () => {
+  const mapRect = mapContainer.getBoundingClientRect();
+
+  document.querySelectorAll(".marker").forEach(marker => {
+    const category = marker.dataset.category;
+    const spot = markersData[category].find(s => s.name === marker.dataset.name);
+    if (spot) {
+      const leftPx = spot.x * mapRect.width;
+      const topPx = spot.y * mapRect.height;
+      marker.style.left = leftPx + "px";
+      marker.style.top = topPx + "px";
+    }
+  });
+});
+
+let slideIndex = 0;
+const slides = document.querySelectorAll(".slideshow .slide");
+
+function showSlides() {
+  slides.forEach((slide) => slide.classList.remove("active"));
+
+  slideIndex++;
+  if (slideIndex > slides.length) slideIndex = 1;
+
+  slides[slideIndex - 1].classList.add("active");
+  setTimeout(showSlides, 3000);
+}
+
+showSlides();
