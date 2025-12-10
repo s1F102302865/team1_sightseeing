@@ -1,149 +1,120 @@
-/* 基本設定 */
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: 'Noto Sans JP', sans-serif;
-}
-
-/* 画面全体の背景設定 */
+/* ====================================
+   背景画像の設定（変更なし）
+   ==================================== */
 body {
-    position: relative; /* ::beforeを配置するために必要 */
-    overflow: hidden;   /* ::beforeがはみ出さないように */
-}
-
-/* 透過した背景画像を設定するための擬似要素 */
-body::before {
-    content: '';
-    position: fixed; /* 背景を固定 */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../img/team-icon-removebg-preview.png');
-    background-size: 100%;
-    background-position: center 2800%;
-    background-repeat: no-repeat;
-    opacity: 0.3; /* ここで画像の透過度を調整 (0.0から1.0の間) */
-    z-index: -1;  /* 他のコンテンツの背面に配置 */
-}
-
-
-/* ヘッダー */
-.header {
+    background-image: url('../img/login.png'); 
+    background-size: cover; 
+    background-position: center center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+    min-height: 100vh;
+    margin: 0;
+    
+    /* フォームとロゴを垂直方向中央に配置するため、Flexboxを維持 */
     display: flex;
-    align-items: center;
-    background-color: #d9e5ff;
-    color: #440000;
-    padding: 12px 20px;
+    justify-content: center; 
+    align-items: center; 
 }
 
-/* (以下、他のCSSは変更なし) */
-
-.header-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    height: 60px;
-    position: relative;
-    top: 15px;
-}
-
-/* ハンバーガーメニューのスタイル */
-.menu-icon {
-    width: 24px;
-    height: 18px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-right: 15px;
-    cursor: pointer;
-}
-
-.menu-icon span {
-    display: block;
-    height: 3px;
-    width: 100%;
-    background-color: #440000;
-    border-radius: 2px;
-}
-
-/* ログインフォーム全体のコンテナ */
+/* ====================================
+   ログインコンテナとロゴの設定
+   ==================================== */
 .login-container {
+    background-color: transparent; 
+    
+    width: 90%; 
+    max-width: 500px; 
+    
+    /* フォーム全体を画面中央より少し上に配置するための調整を維持 */
+    margin-top: -15vh; 
+    
+    /* 【修正点】左寄せのためのマージンをリセットし、中央配置のFlexboxに戻す */
+    margin-right: auto;
+    margin-left: auto;
+    
+    /* コンテンツの配置を中央揃えに戻す */
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 80vh; /* ヘッダーの高さを考慮して調整 */
+    align-items: center; /* **中央揃えに戻す** */
 }
 
-/* ログインカード */
-.login-card {
-    border-radius: 12px;
-    width: 100%; /* ← 100%に修正 */
-    max-width: 500px; /* ← 好みの幅に値を変更 (例: 500px) */
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    padding: 40px;
+.logo {
+    /* DRIVEY テキストのスタイル */
+    font-family: 'Bangers', cursive;
+    font-size: 15em; 
+    font-weight: 900;
+    color: white; 
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5); 
+    margin-bottom: 30px;
+    
+    /* 【修正点】ロゴは親要素(.login-container)の中央に配置されるようにする */
+    align-self: center; 
 }
 
-.login-card h2 {
-    margin-top: 0;
-    margin-bottom: 40px;
-    color: #333;
-    font-size: 1.6rem;
-    font-weight: 700;
+/* ====================================
+   フォーム要素の設定
+   ==================================== */
+form {
+    width: 110%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+    
+    /* 【修正点】フォーム全体を左にずらすためのマージン設定 */
+    /* フォームの幅(100%)を基準に、左に20%ずらす例 */
+    /* この値を調整して左へのずれ具合を変更してください */
+    margin-right: auto;
+    margin-top: 10%; 
+    margin-left: -70%; 
+    
+    /* フォーム内の要素を左揃えにする */
+    align-items: flex-end;
 }
 
-/* フォーム */
-.login-form {
-    position: relative;
-    z-index: 2;
-}
-
-.form-group {
-    margin-bottom: 40px;
-    text-align: left;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: #555;
-    font-weight: 500;
-    font-size: 0.9rem;
-}
-
-.form-input {
+.input-group {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
     width: 100%;
-    padding: 12px;
-    border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    box-sizing: border-box;
-    font-size: 1rem;
-    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.form-input:focus {
-    outline: none;
-    border-color: #8c233a;
-    box-shadow: 0 0 0 3px rgba(140, 35, 58, 0.1);
-}
-
-.login-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #6D4C41;
+label {
+    width: auto; 
+    margin-bottom: 10px; 
     color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 20px;
+    font-size: 1.1em;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); 
 }
 
-.login-button:hover {
-    background-color: #751d30;
+input[type="text"],
+input[type="password"] {
+    width: 100%; 
+    box-sizing: border-box; 
+    
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.2); 
+    border: none;
+    border-radius: 5px;
+    color: white; 
+    font-size: 1.1em;
+    outline: none; 
+}
+
+/* ====================================
+   ログインボタンの設定
+   ==================================== */
+.login-button {
+    /* ログインボタンのスタイル */
+    width: 100%; 
+    padding: 15px;
+    background-color: #CC0000; 
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
 }
