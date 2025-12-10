@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>長野ドライブ提案 | 地方創生ルート</title>
+
+  <!-- bxSlider CSS & jQuery（既存） -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+
+  
+  <!-- 自作CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#">
+        <img src="photo/Drivey_icon.png" alt="DRIVEY" class="brand-mark" />
+        <span class="brand-text">DRIVEY</span>
+      </a>
+
+      <button class="hamburger" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ヒーロー：スライドショー（既存コードを活かす） -->
+    <section class="hero">
+      <div class="container">
+        <div class="slider">
+          <img src="photo/kawa.jpg" alt="渓谷の景観">
+          <img src="photo/hana.jpg" alt="季節の花畑">
+          <img src="photo/kirei.jpg" alt="澄んだ空気と山並み">
+          <img src="photo/yakei.jpg" alt="高原の夜景">
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Filters (カテゴリ) ===== -->
+    <section class="filters">
+      <div class="filters-inner">
+        <button class="chip is-primary">温泉</button>
+        <button class="chip">絶景</button>
+        <button class="chip">城・史跡</button>
+        <button class="chip">グルメ</button>
+      </div>
+    </section>
+
+    <!-- 中央：長野県の地図 + 右：詳細パネル -->
+    <section id="map" class="map-section">
+      <div class="container map-grid">
+        <!-- 地図パネル -->
+        <div class="map-panel">
+          <!-- 適当な地図画像に差し替えてください（推奨：SVG） -->
+          <div class="map-canvas" style="background-image: url('photo/nagano-map.png');">
+            <!-- ●ピン（位置は%で調整） data-nameでツールチップ名、hrefで詳細IDに対応 -->
+            <a href="#spot-matsumoto" class="pin" style="top:42%; left:30%;" data-name="松本城"></a>
+            <a href="#spot-kamikochi" class="pin" style="top:55%; left:18%;" data-name="上高地"></a>
+            <a href="#spot-suwa" class="pin" style="top:58%; left:36%;" data-name="諏訪湖"></a>
+            <a href="#spot-nagano" class="pin" style="top:30%; left:55%;" data-name="善光寺（長野市）"></a>
+            <a href="#spot-bessho" class="pin" style="top:48%; left:63%;" data-name="別所温泉（上田）"></a>
+            <a href="#spot-iida" class="pin" style="top:80%; left:38%;" data-name="飯田・南信州"></a>
+          </div>
+          <p class="map-note">●をクリックすると右側に詳細が表示されます。将来的に外部サイトや予約ページをここから開けます。</p>
+        </div>
+
+        <!-- 詳細パネル -->
+        <aside class="details-panel" aria-live="polite">
+          <!-- 初期表示 -->
+          <section id="spot-default" class="spot-detail is-active">
+            <h2>スポット詳細</h2>
+            <p>地図上の●ピンをクリックすると、提案内容がここに表示されます。</p>
+            <ul class="bullets">
+              <li>見どころ／滞在時間の目安</li>
+              <li>混雑回避の時間帯・季節のおすすめ</li>
+              <li>地方創生の観点（地元商店・体験など）</li>
+              <li>安全情報（冬期通行止め等）</li>
+            </ul>
+          </section>
+
+          <!-- 松本 -->
+          <section id="spot-matsumoto" class="spot-detail" data-url="https://www.matsumoto-castle.jp/">
+            <h2>松本城・城下町</h2>
+            <p>国宝松本城と城下町の食べ歩き。午前中見学→中町通りでランチ→工芸体験。</p>
+            <dl class="meta">
+              <div><dt>滞在目安</dt><dd>2〜3時間</dd></div>
+              <div><dt>地方連携</dt><dd>地元工芸／蔵のまち散策</dd></div>
+              <div><dt>混雑回避</dt><dd>9:00台の入城が快適</dd></div>
+            </dl>
+            <div class="actions">
+              <a class="btn primary" target="_blank" rel="noopener" href="https://www.matsumoto-castle.jp/">公式サイトを開く</a>
+              <button class="btn ghost" data-open-embed>サイトを埋め込み表示</button>
+            </div>
+            <div class="embed hidden" data-embed></div>
+          </section>
+
+          <!-- 上高地 -->
+          <section id="spot-kamikochi" class="spot-detail" data-url="https://www.kamikochi.org/">
+            <h2>上高地</h2>
+            <p>河童橋からの散策。自然保護のためマイカー規制あり（季節注意）。</p>
+            <dl class="meta">
+              <div><dt>滞在目安</dt><dd>3〜4時間</dd></div>
+              <div><dt>地方連携</dt><dd>周辺バス・ターミナル活用</dd></div>
+              <div><dt>注意</dt><dd>冬季閉鎖／装備準備</dd></div>
+            </dl>
+            <div class="actions">
+              <a class="btn primary" target="_blank" rel="noopener" href="https://www.kamikochi.org/">公式サイトを開く</a>
+              <button class="btn ghost" data-open-embed>サイトを埋め込み表示</button>
+            </div>
+            <div class="embed hidden" data-embed></div>
+          </section>
+
+          <!-- 諏訪湖 -->
+          <section id="spot-suwa" class="spot-detail" data-url="https://www.suwakanko.jp/">
+            <h2>諏訪湖・間欠泉／高島城</h2>
+            <p>湖畔散策と足湯、諏訪大社の参拝を組み合わせ。夜は花火イベントも。</p>
+            <dl class="meta">
+              <div><dt>滞在目安</dt><dd>2時間</dd></div>
+              <div><dt>地方連携</dt><dd>湖畔商店街・温泉街活性</dd></div>
+              <div><dt>移動</dt><dd>岡谷・茅野と周遊可</dd></div>
+            </dl>
+            <div class="actions">
+              <a class="btn primary" target="_blank" rel="noopener" href="https://www.suwakanko.jp/">公式サイトを開く</a>
+              <button class="btn ghost" data-open-embed>サイトを埋め込み表示</button>
+            </div>
+            <div class="embed hidden" data-embed></div>
+          </section>
+
+          <!-- 善光寺 -->
+          <section id="spot-nagano" class="spot-detail" data-url="https://www.zenkoji.jp/">
+            <h2>善光寺（長野市）</h2>
+            <p>表参道の食べ歩きと合わせて、午前参拝→門前で精進・蕎麦ランチ。</p>
+            <dl class="meta">
+              <div><dt>滞在目安</dt><dd>2時間</dd></div>
+              <div><dt>地方連携</dt><dd>門前町の商い支援</dd></div>
+              <div><dt>混雑回避</dt><dd>午前中〜昼前が◎</dd></div>
+            </dl>
+            <div class="actions">
+              <a class="btn primary" target="_blank" rel="noopener" href="https://www.zenkoji.jp/">公式サイトを開く</a>
+              <button class="btn ghost" data-open-embed>サイトを埋め込み表示</button>
+            </div>
+            <div class="embed hidden" data-embed></div>
+          </section>
+
+          <!-- 別所温泉 -->
+          <section id="spot-bessho" class="spot-detail" data-url="https://ueda-kanko.or.jp/feature/bessho/">
+            <h2>別所温泉（上田）</h2>
+            <p>“信州の鎌倉”で寺社巡り→外湯。夕方チェックインで湯治×商店街応援。</p>
+            <dl class="meta">
+              <div><dt>滞在目安</dt><dd>半日〜1日</dd></div>
+              <div><dt>地方連携</dt><dd>宿泊×商店街セット</dd></div>
+              <div><dt>移動</dt><dd>上田電鉄／車</dd></div>
+            </dl>
+            <div class="actions">
+              <a class="btn primary" target="_blank" rel="noopener" href="https://ueda-kanko.or.jp/feature/bessho/">公式サイトを開く</a>
+              <button class="btn ghost" data-open-embed>サイトを埋め込み表示</button>
+            </div>
+            <div class="embed hidden" data-embed></div>
+          </section>
+
+          <!-- 飯田・南信州 -->
+          <section id="spot-iida" class="spot-detail" data-url="https://www.minami-shinshu.jp/">
+            <h2>飯田・南信州</h2>
+            <p>天空の里ビューポイント／りんご狩り／飯田線秘境駅。地域体験で滞在価値UP。</p>
+            <dl class="meta">
+              <div><dt>滞在目安</dt><dd>半日〜1日</dd></div>
+              <div><dt>地方連携</dt><dd>農泊・果樹園・体験</dd></div>
+              <div><dt>注意</dt><dd>山間部の道路状況確認</dd></div>
+            </dl>
+            <div class="actions">
+              <a class="btn primary" target="_blank" rel="noopener" href="https://www.minami-shinshu.jp/">公式サイトを開く</a>
+              <button class="btn ghost" data-open-embed>サイトを埋め込み表示</button>
+            </div>
+            <div class="embed hidden" data-embed></div>
+          </section>
+        </aside>
+      </div>
+    </section>
+
+    <!-- おすすめルート（見出しだけ用意：中身は後で自動生成と連携） -->
+    <section id="routes" class="routes">
+      <div class="container">
+        <h2>おすすめルート（自動提案と連携）</h2>
+        <p>アプリ側で生成されたルートをここに差し込み可能です（JSON→カード表示／ダウンロードなど）。</p>
+        <div class="route-cards">
+          <article class="route-card">
+            <h3>半日：松本市内＋城下町</h3>
+            <p>松本駅 → 松本城 → 中町通り → 工芸体験 → ご当地グルメ</p>
+          </article>
+          <article class="route-card">
+            <h3>1日：善光寺＋戸隠そば</h3>
+            <p>長野駅 → 善光寺参拝 → 門前ランチ → 戸隠古道散策（季節）</p>
+          </article>
+          <article class="route-card">
+            <h3>1.5日：諏訪湖と温泉街</h3>
+            <p>岡谷IC → 諏訪湖畔 → 高島城 → 足湯 → 宿泊（温泉街）</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- プロジェクト概要 -->
+    <section id="about" class="about">
+      <div class="container">
+        <h2>プロジェクト概要</h2>
+        <p>
+          本サイトは、長野県の魅力を発掘・回遊性を高める「地方創生」目的のドライブ提案サイトです。<br>
+          中心の地図に地域スポットを可視化し、外部サイトの情報・予約ページと連携します。将来は<strong>ルート自動生成</strong>や<strong>混雑・天候データ連携</strong>も統合予定です。
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© 2025 Nagano Drive Project</small>
+    </div>
+  </footer>
+
+  <!-- 既存スライダー初期化 + 簡易インタラクション -->
+  <script>
+    $(function () {
+      $('.slider').bxSlider({
+        auto: true,
+        pause: 5000,
+        controls: false,
+        pager: true
+      });
+
+      // 地図ピンをクリック → 詳細パネル切替
+      const $details = $('.details-panel .spot-detail');
+      const $default = $('#spot-default');
+
+      $('.map-canvas').on('click', '.pin', function (e) {
+        e.preventDefault();
+        const target = $(this).attr('href'); // 例: #spot-matsumoto
+        $details.removeClass('is-active');
+        $(target).addClass('is-active');
+        $('html, body').animate({ scrollTop: $('.details-panel').offset().top - 16 }, 300);
+      });
+
+      // 「サイトを埋め込み表示」ボタン
+      $('[data-open-embed]').on('click', function () {
+        const $section = $(this).closest('.spot-detail');
+        const url = $section.data('url');
+        const $embedBox = $section.find('[data-embed]');
+        $embedBox.toggleClass('hidden');
+        if (!$embedBox.data('loaded')) {
+          $embedBox.html('<iframe title="関連サイト" loading="lazy" src="' + url + '" ></iframe>');
+          $embedBox.data('loaded', true);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
