@@ -7,3 +7,11 @@ def top_view(request):
     # drivey/templates/drivey/top.html を表示
     return render(request, 'drivey/top.html')
 
+# ログインページの表示
+def login(request):
+    return render(request, 'drivey/login.html')
+
+# トップページの表示
+def top(request):
+    return render(request, 'drivey/top.html')
+
