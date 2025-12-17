@@ -160,7 +160,6 @@ function toggleSelection(spot) {
   updateCheckboxes();
 }
 
-// チェックボックス更新
 function updateCheckboxes() {
   checkboxContainer.innerHTML = "";
   selectedSpots.forEach((spot) => {
@@ -172,7 +171,6 @@ function updateCheckboxes() {
     checkbox.addEventListener("change", () => {
       if (!checkbox.checked) {
         selectedSpots = selectedSpots.filter(s => s.name !== spot.name);
-        // 対応するマーカーの active クラスも解除
         const marker = document.querySelector(`.marker[data-name="${spot.name}"]`);
         if (marker) {
           marker.classList.remove("active");
@@ -185,7 +183,11 @@ function updateCheckboxes() {
     label.append(" " + spot.name);
     checkboxContainer.appendChild(label);
   });
+
+  // ★追加：Google Maps 側に反映
+  updateWaypointsSelect();
 }
+
 
 // ウィンドウリサイズ時にマーカーの位置を再計算
 window.addEventListener("resize", () => {
@@ -217,3 +219,22 @@ function showSlides() {
 }
 
 showSlides();
+
+// ルート検索HTML側の waypoint セレクトに反映
+function updateWaypointsSelect() {
+  const waypointSelect = document.getElementById("waypoints");
+  if (!waypointSelect) return;  // まだGoogle Maps側が読み込まれてない時の対策
+
+  waypointSelect.innerHTML = ""; // 一旦クリア
+
+  selectedSpots.forEach((spot) => {
+    const option = document.createElement("option");
+    option.value = `${spot.name}`;  // ← 本当は経度緯度が理想（後述）
+    option.textContent = spot.name;
+    option.selected = true; // デフォルトで選択
+    waypointSelect.appendChild(option);
+  });
+}
+
+
+
