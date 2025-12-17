@@ -1,0 +1,379 @@
+/* リセット＆基本 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body.base--reset {
+  font-family: 'Shippori Mincho B1', serif;
+  color: #dddc83;
+  letter-spacing: 0.05em;
+  height: 100vh;
+  overflow: auto;
+  position: relative;
+  background: #000; /* 背景色のフォールバック */
+}
+
+/* 背景固定 */
+.bg-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: url("../img/image.png") center center / cover no-repeat fixed;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: -1;
+}
+
+/* containerを画面いっぱいに */
+.container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
+  display: block;
+}
+
+/* main-scrollを画面いっぱいに */
+.main-scroll {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+  box-sizing: border-box;
+
+  text-align: center;
+}
+
+/* 地図画像のレスポンシブ対応 */
+#map-container {
+  margin-left: auto;
+  margin-right: auto;
+  /* 幅が決まっている場合は幅指定も必要 */
+  width: 100%;
+  max-width: 500px; /* 元画像の最大幅 */
+  position: relative; /* 既に必要 */
+  aspect-ratio: 500 / 700; /* 縦横比維持 */
+  background-image: url('...'); /* マップ画像 */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* =========================
+   ヘッダー
+========================= */
+.header {
+  width: 100%;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  z-index: 2000;
+  border-bottom: 1px solid #ddd;
+  box-sizing: border-box;
+  font-weight: 600;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.app-icon {
+  width: 38px;
+  height: 38px;
+  margin-right: 8px;
+}
+
+.app-name {
+  font-size: 20px;
+  color: #333;
+}
+
+.header-nav ul {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header-nav ul li a {
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+}
+
+.header-nav ul li a:hover {
+  color: #0f766e;
+  text-decoration: underline;
+}
+
+/* =========================
+   スライドショー
+========================= */
+.slideshow {
+  margin-top: 0;
+  width: 100%;
+  height: 280px;
+  position: relative;
+  overflow: hidden;
+}
+
+.slideshow .slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  display: block;
+}
+
+.slideshow .slide.active {
+  opacity: 1;
+}
+
+/* =========================
+   メイン領域
+========================= */
+.container {
+  margin-top: 20px;
+}
+
+main.main-scroll {
+  padding: 20px;
+}
+
+/* MAP */
+#map-container {
+  margin-left: auto;
+  margin-right: auto;
+  /* 幅が決まっている場合は幅指定も必要 */
+  width: 100%;
+  max-width: 500px; /* 元画像の最大幅 */
+  position: relative; /* 既に必要 */
+  aspect-ratio: 500 / 700; /* 縦横比維持 */
+  background-image: url('...'); /* マップ画像 */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#map-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ボタン群 */
+#category-buttons {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+#category-buttons button {
+  margin: 4px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #444;
+  color: #dddc83;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#category-buttons button:hover,
+#category-buttons button.active {
+  background: #88a;
+}
+
+/* マーカー共通 */
+.marker {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s ease;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: brightness(1);
+}
+
+.marker.onsen {
+  background-image: url("../img/onsen1.png");
+}
+.marker.shrine {
+  background-image: url("../img/shrine.png");
+}
+.marker.waterfall {
+  background-image: url("../img/taki.png");
+}
+.marker.souvenir {
+  background-image: url("../img/station.png");
+}
+/* ホバー時 */
+.marker:hover {
+  filter: brightness(1.2);
+  transform: translate(-50%, -50%) scale(1.2);
+  z-index: 10;
+}
+
+/* 選択時にカテゴリごとの色を重ねる（半透明） */
+.marker.active::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  opacity: 0.4;
+}
+
+.marker.onsen.active::after {
+  background-color: red;
+}
+
+.marker.shrine.active::after {
+  background-color: yellow;
+}
+
+.marker.waterfall.active::after {
+  background-color: blue;
+}
+
+.marker.souvenir.active::after {
+  background-color: green;
+}
+
+/* 選択時は少し拡大・強調 */
+.marker.active {
+  transform: translate(-50%, -50%) scale(1.25);
+  filter: brightness(1.3);
+  z-index: 15;
+}
+
+#selection-area {
+  margin-top: 20px;
+}
+
+#checkbox-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+#checkbox-container label {
+  color: #88a;
+  background: white;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  padding: 4px 10px;
+  width: 300px;
+  text-align: left;
+}
+
+/* ツールチップ */
+.tooltip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: #dddc83;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  pointer-events: auto;
+  z-index: 1000;
+  display: none;
+  max-width: 250px;
+  word-wrap: break-word;
+  box-shadow: 0 0 10px rgba(136, 136, 170, 0.7);
+}
+
+.tooltip a {
+  color: #88a;
+  text-decoration: underline;
+}
+
+#recommendation {
+  color: rgb(250, 250, 250);
+}
+
+#link {
+  color: rgb(191, 184, 253);
+  text-decoration: underline;
+}
+
+/* ボタンの基本設定 */
+.btn {
+  display: inline-block;
+  padding: 15px 40px;
+  margin: 20px auto;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center;
+  width: auto;
+}
+
+/* グラデーションボタン */
+a.btn-gradient {
+  font-size: 2rem;
+  color: #fff;
+  border-radius: 100vh;
+  background-image: -webkit-linear-gradient(110deg, #e9defa 0%, #fbfcdb 100%);
+  background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease;
+}
+
+/* テキストグラデーション */
+a.btn-gradient span {
+  background-image: -webkit-linear-gradient(left, #7989af, #bbbbfb);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* ホバー時の影の変化 */
+a.btn-gradient:hover {
+  background-image: linear-gradient(-20deg, #d0c0fa 0%, #e5e8d5 100%);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* カスタムスクロールバー（Webkit系） */
+.main-scroll::-webkit-scrollbar {
+  width: 12px;
+}
+
+.main-scroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.main-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(78, 78, 110, 0.7);
+  border-radius: 6px;
+}
