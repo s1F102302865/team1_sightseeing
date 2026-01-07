@@ -17,3 +17,6 @@ def api(request):
 def top(request):
     return render(request, 'drivey/top.html')
 
+def recommendation(request):
+    return render(request, 'drivey/osusume2.html')
+
