@@ -11,6 +11,8 @@ def top_view(request):
 def login(request):
     return render(request, 'drivey/login.html')
 
+def api(request):
+    return render(request, 'drivey/api.html')
 # トップページの表示
 def top(request):
     return render(request, 'drivey/top.html')
