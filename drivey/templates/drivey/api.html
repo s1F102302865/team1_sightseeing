@@ -5,31 +5,69 @@
     <link rel="stylesheet" href="{% static 'drivey/css/top4.css' %}">
 <script src="{% static 'drivey/js/header_slideshow.js' %}"></script>
     <title>Nagano Route with Waypoints</title>
-    <script>
-      function initMap() {
-        const directionsRenderer = new google.maps.DirectionsRenderer();
-        const directionsService = new google.maps.DirectionsService();
+<script>
+function getQueryParams() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    start: params.get("start"),
+    end: params.get("end"),
+    waypoints: params.get("waypoints")
+      ? params.get("waypoints").split("|")
+      : []
+  };
+}
 
-        const map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 9,
-          center: { lat: 36.65, lng: 138.18 },  // 長野県中心付近
-          disableDefaultUI: true,
-        });
+function initMap() {
+  // ▼ URLから値を取得
+  const params = getQueryParams();
 
-        directionsRenderer.setMap(map);
-        directionsRenderer.setPanel(document.getElementById("sidebar"));
+  // ▼ select に自動セット
+  if (params.start) {
+    document.getElementById("start").value = params.start;
+  }
 
-        const control = document.getElementById("floating-panel");
-        map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
+  if (params.end) {
+    document.getElementById("end").value = params.end;
+  }
 
-        const onChangeHandler = () =>
-          calculateAndDisplayRoute(directionsService, directionsRenderer);
-
-        document.getElementById("start").addEventListener("change", onChangeHandler);
-        document.getElementById("end").addEventListener("change", onChangeHandler);
-        document.getElementById("mode").addEventListener("change", onChangeHandler);
-        document.getElementById("waypoints").addEventListener("change", onChangeHandler);
+  if (params.waypoints.length > 0) {
+    const wpSelect = document.getElementById("waypoints");
+    Array.from(wpSelect.options).forEach(opt => {
+      if (params.waypoints.includes(opt.value)) {
+        opt.selected = true;
       }
+    });
+  }
+
+  // ▼ Google Maps 初期化
+  const directionsRenderer = new google.maps.DirectionsRenderer();
+  const directionsService = new google.maps.DirectionsService();
+
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 9,
+    center: { lat: 36.65, lng: 138.18 },
+    disableDefaultUI: true,
+  });
+
+  directionsRenderer.setMap(map);
+  directionsRenderer.setPanel(document.getElementById("sidebar"));
+
+  const control = document.getElementById("floating-panel");
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
+
+  const onChangeHandler = () =>
+    calculateAndDisplayRoute(directionsService, directionsRenderer);
+
+  document.getElementById("start").addEventListener("change", onChangeHandler);
+  document.getElementById("end").addEventListener("change", onChangeHandler);
+  document.getElementById("mode").addEventListener("change", onChangeHandler);
+  document.getElementById("waypoints").addEventListener("change", onChangeHandler);
+
+  // ▼ 初回表示で自動ルート描画
+  calculateAndDisplayRoute(directionsService, directionsRenderer);
+}
+
+window.initMap = initMap;
 
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   const start = document.getElementById("start").value;
@@ -114,121 +152,124 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     <div id="floating-panel">
       <strong>Start (長野県内):</strong>
       <select id="start">
-        <option value="35.554651, 137.588831">男滝女滝</option>
-        <option value="36.058564118172306, 138.26710462164564">蓼科大滝</option>
-        <option value="36.411091, 138.594427">白糸の滝第一駐車場</option>
-        <option value="36.670610609065335, 138.42524371825652">雷滝指定駐車場</option>
-        <option value="36.118782, 137.622122">善五郎の滝 駐車場</option>
-        <option value="35.620516052843264, 137.54736585752158">田立の滝（粒粟平駐車場）</option>
-        <option value="35.4815, 137.69917">姿見不動滝</option>
-        <option value="36.041555, 138.539684">御三甕の滝（おみかの滝駐車場）</option>
-        <option value="35.588170, 137.831673">不動滝（不動滝駐車場）</option>
-        <option value="36.424611, 137.932669">道の駅いくさかの郷</option>
-        <option value="36.37246192691652, 138.1403740400143">道の駅あおき</option>
-        <option value="36.406532, 138.205181">上田道と川の駅おとぎの里</option>
-        <option value="36.35571815091406, 138.3739416958353">道の駅雷電くるみの里</option>
-        <option value="36.29335084056111, 137.87794525535304">道の駅アルプス安曇野ほりがねの里</option>
-        <option value="36.10632964460391, 137.98819352918926">道の駅小坂田公園</option>
-        <option value="36.12889941565543, 138.4654075859021">道の駅八千穂高原</option>
-        <option value="36.05178528400654, 138.25773664715632">道の駅 ビーナスライン蓼科湖</option>
-        <option value="35.88690459529969, 137.94394947308018">道の駅大芝高原</option>
-        <option value="35.81025359727348, 138.08334599980276">道の駅南アルプス長谷</option>
-        <option value="35.69081967118465, 137.9399277851349">道の駅田切の里</option>
-        <option value="35.735909591984, 137.8974020091907">光善寺</option>
-        <option value="35.49590404242432, 137.83823583256674">鳩ヶ峰八幡宮</option>
-        <option value="36.000296388237736, 138.12001141254376">諏訪大社</option>
-        <option value="36.75550306560549, 138.07889222079572">戸隠神社</option>
-        <option value="36.36934699413184, 138.6566048695912">熊野皇大神社</option>
-        <option value="36.40504908863375, 138.24658035996208">眞田神社</option>
-        <option value="36.44648346766129, 138.33567185013342">真田山長谷寺</option>
-        <option value="36.33978363132007, 137.88403655983066">穂高神社</option>
-        <option value="35.985137082853484, 138.20452549603553">清龍山長円寺</option>
-        <option value="36.361439702472715, 138.58878392790777">星野温泉トンボの湯</option>
-        <option value="36.15219941771612, 137.6275888817321">白骨温泉公共野天風呂</option>
-        <option value="36.47941160122993, 138.14320695366132">湯の華銭湯瑞祥</option>
-        <option value="36.501767287742986, 138.23043404964108">地蔵温泉十福の湯</option>
-        <option value="35.74336520707705, 137.88800933455923">早太郎温泉こまくさの湯</option>
-        <option value="36.0171584368439, 138.56571168068328">南相木温泉滝見の湯</option>
+        <option value="35.554651,137.588831">男滝女滝</option>
+        <option value="36.058564118172306,138.26710462164564">蓼科大滝</option>
+        <option value="36.411091,138.594427">白糸の滝第一駐車場</option>
+        <option value="36.670610609065335,138.42524371825652">雷滝指定駐車場</option>
+        <option value="36.118782,137.622122">善五郎の滝 駐車場</option>
+        <option value="35.620516052843264,137.54736585752158">田立の滝（粒粟平駐車場）</option>
+        <option value="35.4815,137.69917">姿見不動滝</option>
+        <option value="36.041555,138.539684">御三甕の滝（おみかの滝駐車場）</option>
+        <option value="35.588170,137.831673">不動滝（不動滝駐車場）</option>
+        <option value="36.424611,137.932669">道の駅いくさかの郷</option>
+        <option value="36.37246192691652,138.1403740400143">道の駅あおき</option>
+        <option value="36.406532,138.205181">上田道と川の駅おとぎの里</option>
+        <option value="36.35571815091406,138.3739416958353">道の駅雷電くるみの里</option>
+        <option value="36.29335084056111,137.87794525535304">道の駅アルプス安曇野ほりがねの里</option>
+        <option value="36.10632964460391,137.98819352918926">道の駅小坂田公園</option>
+        <option value="36.12889941565543,138.4654075859021">道の駅八千穂高原</option>
+        <option value="36.05178528400654,138.25773664715632">道の駅 ビーナスライン蓼科湖</option>
+        <option value="35.88690459529969,137.94394947308018">道の駅大芝高原</option>
+        <option value="35.81025359727348,138.08334599980276">道の駅南アルプスむら長谷</option>
+        <option value="35.69081967118465,137.9399277851349">道の駅田切の里</option>
+        <option value="35.735909591984,137.8974020091907">光善寺</option>
+        <option value="35.49590404242432,137.83823583256674">鳩ヶ峰八幡宮</option>
+        <option value="36.000296388237736,138.12001141254376">諏訪大社</option>
+        <option value="36.75550306560549,138.07889222079572">戸隠神社</option>
+        <option value="36.36934699413184,138.6566048695912">熊野皇大神社</option>
+        <option value="36.40504908863375,138.24658035996208">眞田神社</option>
+        <option value="36.44648346766129,138.33567185013342">真田山長谷寺</option>
+        <option value="36.33978363132007,137.88403655983066">穂高神社</option>
+        <option value="35.985137082853484,138.20452549603553">清龍山長円寺</option>
+        <option value="36.361439702472715,138.58878392790777">星野温泉トンボの湯</option>
+        <option value="35.32402618783672,137.63135866033696">ひまわりの湯</option>
+        <option value="36.15219941771612,137.6275888817321">白骨温泉公共野天風呂</option>
+        <option value="36.47941160122993,138.14320695366132">湯の華銭湯瑞祥</option>
+        <option value="36.501767287742986,138.23043404964108">地蔵温泉十福の湯</option>
+        <option value="35.74336520707705,137.88800933455923">早太郎温泉こまくさの湯</option>
+        <option value="36.0171584368439,138.56571168068328">南相木温泉滝見の湯</option>
       </select>
       <br />
 
       <strong>Waypoints (中継地点・複数可):</strong><br />
       <select id="waypoints" multiple size="6">
-        <option value="35.554651, 137.588831">男滝女滝</option>
-        <option value="36.058564118172306, 138.26710462164564">蓼科大滝</option>
-        <option value="36.411091, 138.594427">白糸の滝第一駐車場</option>
-        <option value="36.670610609065335, 138.42524371825652">雷滝指定駐車場</option>
-        <option value="36.118782, 137.622122">善五郎の滝 駐車場</option>
-        <option value="35.620516052843264, 137.54736585752158">田立の滝（粒粟平駐車場）</option>
-        <option value="35.4815, 137.69917">姿見不動滝</option>
-        <option value="36.041555, 138.539684">御三甕の滝（おみかの滝駐車場）</option>
-        <option value="35.588170, 137.831673">不動滝（不動滝駐車場）</option>
-        <option value="36.424611, 137.932669">道の駅いくさかの郷</option>
-        <option value="36.37246192691652, 138.1403740400143">道の駅あおき</option>
-        <option value="36.406532, 138.205181">上田道と川の駅おとぎの里</option>
-        <option value="36.35571815091406, 138.3739416958353">道の駅雷電くるみの里</option>
-        <option value="36.29335084056111, 137.87794525535304">道の駅アルプス安曇野ほりがねの里</option>
-        <option value="36.10632964460391, 137.98819352918926">道の駅小坂田公園</option>
-        <option value="36.12889941565543, 138.4654075859021">道の駅八千穂高原</option>
-        <option value="36.05178528400654, 138.25773664715632">道の駅 ビーナスライン蓼科湖</option>
-        <option value="35.88690459529969, 137.94394947308018">道の駅大芝高原</option>
-        <option value="35.81025359727348, 138.08334599980276">道の駅南アルプス長谷</option>
-        <option value="35.69081967118465, 137.9399277851349">道の駅田切の里</option>
-        <option value="35.735909591984, 137.8974020091907">光善寺</option>
-        <option value="35.49590404242432, 137.83823583256674">鳩ヶ峰八幡宮</option>
-        <option value="36.000296388237736, 138.12001141254376">諏訪大社</option>
-        <option value="36.75550306560549, 138.07889222079572">戸隠神社</option>
-        <option value="36.36934699413184, 138.6566048695912">熊野皇大神社</option>
-        <option value="36.40504908863375, 138.24658035996208">眞田神社</option>
-        <option value="36.44648346766129, 138.33567185013342">真田山長谷寺</option>
-        <option value="36.33978363132007, 137.88403655983066">穂高神社</option>
-        <option value="35.985137082853484, 138.20452549603553">清龍山長円寺</option>
-        <option value="36.361439702472715, 138.58878392790777">星野温泉トンボの湯</option>
-        <option value="36.15219941771612, 137.6275888817321">白骨温泉公共野天風呂</option>
-        <option value="36.47941160122993, 138.14320695366132">湯の華銭湯瑞祥</option>
-        <option value="36.501767287742986, 138.23043404964108">地蔵温泉十福の湯</option>
-        <option value="35.74336520707705, 137.88800933455923">早太郎温泉こまくさの湯</option>
-        <option value="36.0171584368439, 138.56571168068328">南相木温泉滝見の湯</option>
+        <option value="35.554651,137.588831">男滝女滝</option>
+        <option value="36.058564118172306,138.26710462164564">蓼科大滝</option>
+        <option value="36.411091,138.594427">白糸の滝第一駐車場</option>
+        <option value="36.670610609065335,138.42524371825652">雷滝指定駐車場</option>
+        <option value="36.118782,137.622122">善五郎の滝 駐車場</option>
+        <option value="35.620516052843264,137.54736585752158">田立の滝（粒粟平駐車場）</option>
+        <option value="35.4815,137.69917">姿見不動滝</option>
+        <option value="36.041555,138.539684">御三甕の滝（おみかの滝駐車場）</option>
+        <option value="35.588170,137.831673">不動滝（不動滝駐車場）</option>
+        <option value="36.424611,137.932669">道の駅いくさかの郷</option>
+        <option value="36.37246192691652,138.1403740400143">道の駅あおき</option>
+        <option value="36.406532,138.205181">上田道と川の駅おとぎの里</option>
+        <option value="36.35571815091406,138.3739416958353">道の駅雷電くるみの里</option>
+        <option value="36.29335084056111,137.87794525535304">道の駅アルプス安曇野ほりがねの里</option>
+        <option value="36.10632964460391,137.98819352918926">道の駅小坂田公園</option>
+        <option value="36.12889941565543,138.4654075859021">道の駅八千穂高原</option>
+        <option value="36.05178528400654,138.25773664715632">道の駅 ビーナスライン蓼科湖</option>
+        <option value="35.88690459529969,137.94394947308018">道の駅大芝高原</option>
+        <option value="35.81025359727348,138.08334599980276">道の駅南アルプスむら長谷</option>
+        <option value="35.69081967118465,137.9399277851349">道の駅田切の里</option>
+        <option value="35.735909591984,137.8974020091907">光善寺</option>
+        <option value="35.49590404242432,137.83823583256674">鳩ヶ峰八幡宮</option>
+        <option value="36.000296388237736,138.12001141254376">諏訪大社</option>
+        <option value="36.75550306560549,138.07889222079572">戸隠神社</option>
+        <option value="36.36934699413184,138.6566048695912">熊野皇大神社</option>
+        <option value="36.40504908863375,138.24658035996208">眞田神社</option>
+        <option value="36.44648346766129,138.33567185013342">真田山長谷寺</option>
+        <option value="36.33978363132007,137.88403655983066">穂高神社</option>
+        <option value="35.985137082853484,138.20452549603553">清龍山長円寺</option>
+        <option value="36.361439702472715,138.58878392790777">星野温泉トンボの湯</option>
+        <option value="35.32402618783672,137.63135866033696">ひまわりの湯</option>
+        <option value="36.15219941771612,137.6275888817321">白骨温泉公共野天風呂</option>
+        <option value="36.47941160122993,138.14320695366132">湯の華銭湯瑞祥</option>
+        <option value="36.501767287742986,138.23043404964108">地蔵温泉十福の湯</option>
+        <option value="35.74336520707705,137.88800933455923">早太郎温泉こまくさの湯</option>
+        <option value="36.0171584368439,138.56571168068328">南相木温泉滝見の湯</option>
       </select>
       <br />
 
       <strong>End (長野県内):</strong>
       <select id="end">
-        <option value="35.554651, 137.588831">男滝女滝</option>
-        <option value="36.058564118172306, 138.26710462164564">蓼科大滝</option>
-        <option value="36.411091, 138.594427">白糸の滝第一駐車場</option>
-        <option value="36.670610609065335, 138.42524371825652">雷滝指定駐車場</option>
-        <option value="36.118782, 137.622122">善五郎の滝 駐車場</option>
-        <option value="35.620516052843264, 137.54736585752158">田立の滝（粒粟平駐車場）</option>
-        <option value="35.4815, 137.69917">姿見不動滝</option>
-        <option value="36.041555, 138.539684">御三甕の滝（おみかの滝駐車場）</option>
-        <option value="35.588170, 137.831673">不動滝（不動滝駐車場）</option>
-        <option value="36.424611, 137.932669">道の駅いくさかの郷</option>
-        <option value="36.37246192691652, 138.1403740400143">道の駅あおき</option>
-        <option value="36.406532, 138.205181">上田道と川の駅おとぎの里</option>
-        <option value="36.35571815091406, 138.3739416958353">道の駅雷電くるみの里</option>
-        <option value="36.29335084056111, 137.87794525535304">道の駅アルプス安曇野ほりがねの里</option>
-        <option value="36.10632964460391, 137.98819352918926">道の駅小坂田公園</option>
-        <option value="36.12889941565543, 138.4654075859021">道の駅八千穂高原</option>
-        <option value="36.05178528400654, 138.25773664715632">道の駅 ビーナスライン蓼科湖</option>
-        <option value="35.88690459529969, 137.94394947308018">道の駅大芝高原</option>
-        <option value="35.81025359727348, 138.08334599980276">道の駅南アルプス長谷</option>
-        <option value="35.69081967118465, 137.9399277851349">道の駅田切の里</option>
-        <option value="35.735909591984, 137.8974020091907">光善寺</option>
-        <option value="35.49590404242432, 137.83823583256674">鳩ヶ峰八幡宮</option>
-        <option value="36.000296388237736, 138.12001141254376">諏訪大社</option>
-        <option value="36.75550306560549, 138.07889222079572">戸隠神社</option>
-        <option value="36.36934699413184, 138.6566048695912">熊野皇大神社</option>
-        <option value="36.40504908863375, 138.24658035996208">眞田神社</option>
-        <option value="36.44648346766129, 138.33567185013342">真田山長谷寺</option>
-        <option value="36.33978363132007, 137.88403655983066">穂高神社</option>
-        <option value="35.985137082853484, 138.20452549603553">清龍山長円寺</option>
-        <option value="36.361439702472715, 138.58878392790777">星野温泉トンボの湯</option>
-        <option value="36.15219941771612, 137.6275888817321">白骨温泉公共野天風呂</option>
-        <option value="36.47941160122993, 138.14320695366132">湯の華銭湯瑞祥</option>
-        <option value="36.501767287742986, 138.23043404964108">地蔵温泉十福の湯</option>
-        <option value="35.74336520707705, 137.88800933455923">早太郎温泉こまくさの湯</option>
-        <option value="36.0171584368439, 138.56571168068328">南相木温泉滝見の湯</option>
+        <option value="35.554651,137.588831">男滝女滝</option>
+        <option value="36.058564118172306,138.26710462164564">蓼科大滝</option>
+        <option value="36.411091,138.594427">白糸の滝第一駐車場</option>
+        <option value="36.670610609065335,138.42524371825652">雷滝指定駐車場</option>
+        <option value="36.118782,137.622122">善五郎の滝 駐車場</option>
+        <option value="35.620516052843264,137.54736585752158">田立の滝（粒粟平駐車場）</option>
+        <option value="35.4815,137.69917">姿見不動滝</option>
+        <option value="36.041555,138.539684">御三甕の滝（おみかの滝駐車場）</option>
+        <option value="35.588170,137.831673">不動滝（不動滝駐車場）</option>
+        <option value="36.424611,137.932669">道の駅いくさかの郷</option>
+        <option value="36.37246192691652,138.1403740400143">道の駅あおき</option>
+        <option value="36.406532,138.205181">上田道と川の駅おとぎの里</option>
+        <option value="36.35571815091406,138.3739416958353">道の駅雷電くるみの里</option>
+        <option value="36.29335084056111,137.87794525535304">道の駅アルプス安曇野ほりがねの里</option>
+        <option value="36.10632964460391,137.98819352918926">道の駅小坂田公園</option>
+        <option value="36.12889941565543,138.4654075859021">道の駅八千穂高原</option>
+        <option value="36.05178528400654,138.25773664715632">道の駅 ビーナスライン蓼科湖</option>
+        <option value="35.88690459529969,137.94394947308018">道の駅大芝高原</option>
+        <option value="35.81025359727348,138.08334599980276">道の駅南アルプスむら長谷</option>
+        <option value="35.69081967118465,137.9399277851349">道の駅田切の里</option>
+        <option value="35.735909591984,137.8974020091907">光善寺</option>
+        <option value="35.49590404242432,137.83823583256674">鳩ヶ峰八幡宮</option>
+        <option value="36.000296388237736,138.12001141254376">諏訪大社</option>
+        <option value="36.75550306560549,138.07889222079572">戸隠神社</option>
+        <option value="36.36934699413184,138.6566048695912">熊野皇大神社</option>
+        <option value="36.40504908863375,138.24658035996208">眞田神社</option>
+        <option value="36.44648346766129,138.33567185013342">真田山長谷寺</option>
+        <option value="36.33978363132007,137.88403655983066">穂高神社</option>
+        <option value="35.985137082853484,138.20452549603553">清龍山長円寺</option>
+        <option value="36.361439702472715,138.58878392790777">星野温泉トンボの湯</option>
+        <option value="35.32402618783672,137.63135866033696">ひまわりの湯</option>
+        <option value="36.15219941771612,137.6275888817321">白骨温泉公共野天風呂</option>
+        <option value="36.47941160122993,138.14320695366132">湯の華銭湯瑞祥</option>
+        <option value="36.501767287742986,138.23043404964108">地蔵温泉十福の湯</option>
+        <option value="35.74336520707705,137.88800933455923">早太郎温泉こまくさの湯</option>
+        <option value="36.0171584368439,138.56571168068328">南相木温泉滝見の湯</option>
       </select>
       <br />
 
