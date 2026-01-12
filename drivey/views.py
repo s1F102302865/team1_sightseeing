@@ -20,3 +20,5 @@ def top(request):
 def recommendation(request):
     return render(request, 'drivey/osusume2.html')
 
+def intoroduction(request):
+    return render(request, 'drivey/about_drivey.html')
